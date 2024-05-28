@@ -68,5 +68,5 @@ jobs:
             "apt-get install ninja-build"
           ]
 
-          for cmd in packages:
+          for cmd in commands:
             subprocess.run(["sudo"] +cmd.split() +["-y"],check=True)
