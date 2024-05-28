@@ -14,29 +14,59 @@ jobs:
             name: "Ubuntu 24.04"
     steps:
       - name: Test
-        shell: bash
+        shell: python
         run: |
+          commands = [
+            # Required for the build script
+            "apt-get install python3",
 
-          sudo apt-get install libssl-dev
+            # Required for Curl
+            # This has to be executed before "apt update", otherwise
+            # it will cause the GitHub runner to restart
+            "apt-get install libssl-dev",
+            
+            # Required for Pragma core
+            "apt install build-essential",
+            # "add-apt-repository ppa:savoury1/llvm-defaults-14",
+            "apt update",
+            "apt install clang-18",
+            "apt-get install clang-tools-18", # Required for C++20 Modules
+            "apt install libstdc++-12-dev",
+            "apt install libstdc++6",
+            "apt-get install patchelf",
+
+            # Required for Vulkan
+            "apt-get -qq install -y libwayland-dev libxrandr-dev",
+
+            "apt-get install libxcb-keysyms1-dev",
+            "apt-get install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommon-x11-dev",
+
+            # Required for GLFW
+            "apt install xorg-dev",
+
+            # Required for OIDN
+            "apt install git-lfs",
+
+            # Required for Cycles
+            "apt-get install subversion",
+            "apt-get install meson", # epoxy
+            
+            # CMake
+            "apt-get install cmake",
+            
+            # Curl
+            "apt-get install curl zip unzip tar",
+
+            # Required for OIIO
+            # "apt-get install python3-distutils",
+
+            #install freetype for linking. X server frontends (Gnome, KDE etc) already include it somewhere down the line. Also install pkg-config for easy export of flags.
+            "apt-get install pkg-config libfreetype-dev",
 
 
-          sudo apt-get install python3
-          sudo apt install build-essential
-          sudo apt update
-          sudo apt install clang-18
-          sudo apt-get install clang-tools-18
-          sudo apt install libstdc++-12-dev
-          sudo apt install libstdc++6
+            # Ninja
+            "apt-get install ninja-build"
+          ]
 
-          sudo apt-get install patchelf
-          sudo apt-get -qq install -y libwayland-dev libxrandr-dev
-          sudo apt-get install libxcb-keysyms1-dev
-          sudo apt-get install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommon-x11-dev
-          sudo apt install xorg-dev
-          sudo apt install git-lfs
-          sudo apt-get install subversion
-          sudo apt-get install meson
-          sudo apt-get install cmake
-          sudo apt-get install curl zip unzip tar
-          sudo apt-get install pkg-config libfreetype-dev
-          sudo apt-get install ninja-build
+          for cmd in packages:
+            subprocess.run(["sudo"] +cmd.split() +["-y"],check=True)
