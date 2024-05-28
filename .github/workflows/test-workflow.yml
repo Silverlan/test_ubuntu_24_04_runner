@@ -32,8 +32,8 @@ jobs:
           sudo apt-get install subversion
           sudo apt-get install meson
           sudo apt-get install cmake
-          sudo apt-get install libssl-dev
-          sudo apt install libssh2-1
-          sudo apt-get install curl zip unzip tar
-          sudo apt-get install pkg-config libfreetype-dev
-          sudo apt-get install ninja-build
+          #sudo apt-get install libssl-dev
+          #sudo apt install libssh2-1
+          #sudo apt-get install curl zip unzip tar
+          #sudo apt-get install pkg-config libfreetype-dev
+          #sudo apt-get install ninja-build
