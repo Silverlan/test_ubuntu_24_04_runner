@@ -16,8 +16,6 @@ jobs:
       - name: Test
         shell: bash
         run: |
-          sudo apt-get install libssl-dev
-          sudo apt install libssh2-1
           sudo apt-get install python3
           sudo apt install build-essential
           sudo apt update
@@ -25,6 +23,10 @@ jobs:
           sudo apt-get install clang-tools-18
           sudo apt install libstdc++-12-dev
           sudo apt install libstdc++6
+
+          sudo apt-get install libssl-dev
+          sudo apt install libssh2-1
+          
           sudo apt-get install patchelf
           sudo apt-get -qq install -y libwayland-dev libxrandr-dev
           sudo apt-get install libxcb-keysyms1-dev
