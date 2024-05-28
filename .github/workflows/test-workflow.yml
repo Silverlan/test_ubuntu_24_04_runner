@@ -16,6 +16,7 @@ jobs:
       - name: Test
         shell: python
         run: |
+          import subprocess
           commands = [
             # Required for the build script
             "apt-get install python3",
