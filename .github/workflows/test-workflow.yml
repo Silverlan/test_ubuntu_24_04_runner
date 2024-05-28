@@ -16,4 +16,24 @@ jobs:
       - name: Test
         shell: bash
         run: |
-          sudo apt-get install libssl-dev
+          apt-get install python3
+          apt install build-essential
+          apt update
+          apt install clang-18
+          apt-get install clang-tools-18
+          apt install libstdc++-12-dev
+          apt install libstdc++6
+          apt-get install patchelf
+          apt-get -qq install -y libwayland-dev libxrandr-dev
+          apt-get install libxcb-keysyms1-dev
+          apt-get install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommon-x11-dev
+          apt install xorg-dev
+          apt install git-lfs
+          apt-get install subversion
+          apt-get install meson
+          apt-get install cmake
+          apt-get install libssl-dev
+          apt install libssh2-1
+          apt-get install curl zip unzip tar
+          apt-get install pkg-config libfreetype-dev
+          apt-get install ninja-build
